@@ -16,10 +16,7 @@ on:
 jobs:
   build:
 
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
 
@@ -38,3 +35,12 @@ jobs:
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+
+    - name: Build and Push Docker image
+      id: build
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: calebedso/github-action-test
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
