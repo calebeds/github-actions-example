@@ -41,6 +41,5 @@ jobs:
       uses: cloudposse/github-action-docker-build-push@main
       with:
         repository: calebedso/github-action-test
-        registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
